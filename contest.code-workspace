@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"code-runner.runInTerminal": true,
+		"code-runner.executorMap": {
+			"cpp": "cd $dir && g++ -O2 -std=c++14 $fileName -o ./out/$fileNameWithoutExt.out && cat ./input/$fileNameWithoutExt.txt | ./out/$fileNameWithoutExt.out"  
+		},
+		"clang.executable": "clang++",
+		"clang.cxxflags": [ "-std=c++14"]
+	}
+}
