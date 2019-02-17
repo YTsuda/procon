@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
+#include <utility>
 
 using namespace std;
 
@@ -13,8 +14,6 @@ using namespace std;
 #define FOR(var, a, b)  for (auto var = (a); var < (b); var++)
 #define RFOR(var, a, b)  for (auto var = b - 1; var != a; var--)
 #define all(c) begin(c),end(c)
-#define vmax(c) *max_element(all(c))
-#define vmin(c) *min_element(all(c))
  
 template<typename T>
 std::ostream &operator<<(std::ostream &out, const std::vector<T> &v) {
@@ -35,7 +34,7 @@ const int MOD = (int)1e9 + 7;
 const double EPS = 1e-9; 
 
 // 多次元配列を作る
-// vector<vi> vn(n, vi(m, 0));
+// vector<vector<int>> vn(n, vector<int>(3, 0));
 
 // 多次元配列の dump
 // for (vector<int> v : vn) {
@@ -46,41 +45,27 @@ const double EPS = 1e-9;
 // printf("%lld\n", n);
 
 int main(void){
-    int n;
+    int n, m;
     scanf("%d", &n);
-    // printf("%d\n", n);
-    int c = 3;
-    vector<vi> funs(n, vi(c, 0));
-    vector<vi> dp(n + 1, vi(c, 0));
+    scanf("%d", &m);
+    printf("%d\n", n);
+    printf("%d\n", m);
 
-    REP(i, n) {
-        REP(j, c) {
-            int fun;
-            scanf("%d", &fun);
-            funs[i][j] = fun;
-        }
-        // cout << funs[i];
+    vector<int> costs{2,5,5,4,5,6,3,7,6};
+    vector<pair<int, int>> vn(m);
+    REP(i, m){
+        int t;
+        scanf("%d", &t);
+        vn[i] = make_pair(t, costs[t - 1]);
     }
-    // cout << endl;
-    RREP(i, n) {
-        // cout << "=====" << endl;
-        // cout << i << endl;
-        REP(j, c) {
-            vi next_funs;
-            REP(k, c) {
-                if (j != k) {
-                    next_funs.push_back(dp[i + 1][k]);
-                }
-            }
-            // cout << "next_fun is :" << next_funs << endl;
-            int next_max_fun = vmax(next_funs);
-            // cout << "max is :" << next_max_fun << endl;
-            dp[i][j] = funs[i][j] + next_max_fun;
-        }
-        // cout << dp[i] << endl;
+    std::sort(vn.begin(), vn.end(), [](auto &left, auto &right) {
+        return left.second < right.second;
+    });
+    for (pair<int, int> p : vn) {
+        cout << p.first << " : " << p.second << endl;
     }
-    // cout << dp[0];
-    int max_fun = vmax(dp[0]);
-    printf("%d", max_fun);
+    vector<pair<int, int>> smalls;
     return 0;
+    
+
 }
