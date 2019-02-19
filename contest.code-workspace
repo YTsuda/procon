@@ -15,7 +15,8 @@
 		],
 		"files.associations": {
 			"algorithm": "cpp",
-			"vector": "cpp"
+			"vector": "cpp",
+			"utility": "cpp"
 		}
 	}
 }

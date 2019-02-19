@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <math.h>
 #include <cmath>
@@ -8,6 +7,7 @@
 #include <iterator>
 #include <utility>
 #include <map>
+#include <unordered_map>
 
 using namespace std;
 
@@ -63,47 +63,43 @@ const double EPS = 1e-9;
 //     cout << v;
 // }
 
-int main(void){
-    ll n, w;
-    scanf("%lld", &n);
-    scanf("%lld", &w);
+ll MAX_VALUE = 100000;
 
-    vector<pair<ll, ll>> items(n, make_pair(0, 0));
-    REP(i, n) {
-        ll item_weight, item_value;
-        scanf("%lld", &item_weight);
-        scanf("%lld", &item_value);
-        items[i].first = item_weight;
-        items[i].second = item_value;
+ll N, W;
+vector<vll> I;
+vector<vll> DP;
+
+ll pick (ll i, ll values) {
+    return 30;
+}
+
+auto solve() {
+    cin >> N >> W;
+    I.resize(N);
+    DP.resize(N * MAX_VALUE);
+    REP(i, N) {
+        ll weight, value;
+        cin >> weight >> value;
+        I[i] = vll{weight, value};
     }
-    std::sort(items.begin(), items.end(), [](pair<ll,ll> a, pair<ll, ll> b){ return a.first > b.first; });
-
-    vll dp(w + 1, 0);
-    REP(i, n) {
-        // cout << "=====" << endl;
-        ll weight = items[i].first;
-        ll value = items[i].second;
-        vll current_dp(w + 1, 0);
-        RREP(j, w + 1) {
-            ll newWeight;
-            ll newValue;
-            newWeight = j - weight;
-            newValue = dp[j] + value;
-            // cout << j << endl;
-
-            if (newWeight >= 0) {
-                ll compareValue = dp[newWeight];
-                current_dp[newWeight] = max(newValue, compareValue);
+    REP(i, N) {
+        ll item_weight = I[i][0];
+        ll item_value = I[i][1];
+        cout << item_weight << ", " << item_value << endl;
+        REP(j, N * MAX_VALUE) {
+            if(j < item_value) {
+                if(item_weight < DP[j]) {
+                    DP[j] = item_weight;
+                }
             }
-            // cout << "---" << endl;
-            // cout << weight << "," << value << endl;
-            // cout << newWeight << "," << newValue << endl;
         }
-        dp = current_dp;
-        // cout << dp << endl;
     }
-    ll max_value = *max_element(all(dp));
+}
 
-    printf("%lld", max_value);
-    return 0;
+int main(void){
+    cin.tie(0);
+    ios::sync_with_stdio(false);
+
+    solve();
+    // cout << solve();
 }
