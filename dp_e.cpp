@@ -63,15 +63,11 @@ const double EPS = 1e-9;
 //     cout << v;
 // }
 
-ll MAX_VALUE = 100000;
+ll MAX_VALUE = 10;
 
 ll N, W;
 vector<vll> I;
-vector<vll> DP;
-
-ll pick (ll i, ll values) {
-    return 30;
-}
+vector<ll> DP;
 
 auto solve() {
     cin >> N >> W;
@@ -82,18 +78,29 @@ auto solve() {
         cin >> weight >> value;
         I[i] = vll{weight, value};
     }
+    cout << DP << endl;
     REP(i, N) {
+        cout << "===" << endl;
         ll item_weight = I[i][0];
         ll item_value = I[i][1];
         cout << item_weight << ", " << item_value << endl;
         REP(j, N * MAX_VALUE) {
-            if(j < item_value) {
-                if(item_weight < DP[j]) {
-                    DP[j] = item_weight;
-                }
-            }
+            cout << "---" << endl;
+            // item i を拾わない場合
+            // 価値 j を実現するための weight はDPの j である
+            ll passing_weight = DP[j];
+
+            // item i を拾う場合
+            // j の価値を実現するための weight は ( iの重さ + DP[j - item_value] ) である
+            ll base_value = j - item_value;
+            ll base_weight = DP[base_value];
+            ll taking_weight = base_weight + item_weight;
+            cout << base_value << "," << base_weight << endl;
+            cout << passing_weight << "," << taking_weight << endl;
+            DP[j] = min(passing_weight, taking_weight);
         }
     }
+    cout << DP << endl;
 }
 
 int main(void){
