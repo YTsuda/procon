@@ -1,0 +1,29 @@
+abcd
+adbac
+
+a, a = 1
+a, ad = 1
+a, adb = 1
+a, adba = 1
+a, adbac = 1
+ab, a = 1
+ab, ad = 1
+ab, adb = 2
+ab, adba = 2
+ab, adbac = 2
+abc, a = 1
+abc, ad = 1
+abc, adb = 2
+abc, adba = 2
+abc, adbac = 3
+abcd, a = 1
+abcd, ad = 2
+abcd, adb = 2
+abcd, adba = 2
+abcd, adbac = 3
+
+1, 1, 1, 1
+1, 1, 1, 2
+1, 2, 2, 2
+1, 2, 2, 2
+1, 2, 3, 3
