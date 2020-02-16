@@ -42,12 +42,16 @@ const double EPS = 1e-9;
 //     cout << v;
 // }
 
-int main(void){
-    int n;
-    scanf("%d", &n);
-    printf("%d\n", n);
+auto solve() {
+    int a, b, c;
+    cin >> a >> b >> c;
+    cout << min(b / a, c);
+}
 
-    vector<int> vn(n, 0);
-    cout << vn;
+int main(void){
+    cin.tie(0);
+    ios::sync_with_stdio(false);
+
+    solve();
     return 0;
 }

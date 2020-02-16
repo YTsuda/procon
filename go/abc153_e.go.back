@@ -1,0 +1,29 @@
+package main
+
+import "fmt"
+import "sort"
+import "math"
+
+func main() {
+	var h, n int
+
+	fmt.Scan(&h)
+	fmt.Scan(&n)
+
+	type Magic struct {
+		damage int
+		cost int
+	}
+
+	magics := make([]Magic, n)
+
+	var d, c int
+
+	for i := 0; i < n; i++ {
+		fmt.Scan(&d)
+		fmt.Scan(&c)
+		magics[i] = Magic{d, c}
+	}
+
+	fmt.Println(magics)
+}
